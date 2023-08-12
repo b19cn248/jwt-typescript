@@ -14,6 +14,8 @@ const db = mongoose.connection;
 console.log('hello from typescript nodeJS')
 console.log('hello from git hahaha')
 
+console.log('hello from git sub feature')
+
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
