@@ -7,9 +7,8 @@ import {
     Post,
     Put,
     Route,
-    SuccessResponse,
 } from "tsoa";
-import { UsersService, UserCreationParams } from "./user.service";
+import { UsersService, UserCreationParams, UserLoginParams } from "./user.service";
 
 @Route("users")
 export class UsersController extends Controller {
@@ -20,12 +19,26 @@ export class UsersController extends Controller {
         return await this.usersService.get(userId);
     }
 
-    @SuccessResponse("201", "Created")
-    @Post()
-    public async createUser(
+    // @SuccessResponse("201", "Created")
+    // @Post()
+    // public async createUser(
+    //     @Body() requestBody: UserCreationParams
+    // ): Promise<any> {
+    //     return await this.usersService.create(requestBody);
+    // }
+
+    @Post("register")
+    public async register(
         @Body() requestBody: UserCreationParams
     ): Promise<any> {
-        return await this.usersService.create(requestBody);
+        return await this.usersService.signup(requestBody);
+    }
+
+    @Post("login")
+    public async login(
+        @Body() requestBody: UserLoginParams
+    ): Promise<any> {
+        return await this.usersService.signin(requestBody);
     }
 
     @Put("{userId}")

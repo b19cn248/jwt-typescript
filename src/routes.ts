@@ -14,6 +14,16 @@ const models: TsoaRoute.Models = {
         "properties": {
             "username": {"dataType":"string","required":true},
             "email": {"dataType":"string","required":true},
+            "role": {"dataType":"string","required":true},
+            "password": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UserLoginParams": {
+        "dataType": "refObject",
+        "properties": {
+            "username": {"dataType":"string","required":true},
             "password": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
@@ -54,11 +64,11 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/users',
+        app.post('/users/register',
             ...(fetchMiddlewares<RequestHandler>(UsersController)),
-            ...(fetchMiddlewares<RequestHandler>(UsersController.prototype.createUser)),
+            ...(fetchMiddlewares<RequestHandler>(UsersController.prototype.register)),
 
-            function UsersController_createUser(request: any, response: any, next: any) {
+            function UsersController_register(request: any, response: any, next: any) {
             const args = {
                     requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
             };
@@ -72,8 +82,33 @@ export function RegisterRoutes(app: Router) {
                 const controller = new UsersController();
 
 
-              const promise = controller.createUser.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, 201, next);
+              const promise = controller.register.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/users/login',
+            ...(fetchMiddlewares<RequestHandler>(UsersController)),
+            ...(fetchMiddlewares<RequestHandler>(UsersController.prototype.login)),
+
+            function UsersController_login(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserLoginParams"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new UsersController();
+
+
+              const promise = controller.login.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
