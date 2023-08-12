@@ -12,6 +12,7 @@ mongoose.connect(MONGODB_URI)
 const db = mongoose.connection;
 
 console.log('hello from typescript nodeJS')
+console.log('hello from git hahaha')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
