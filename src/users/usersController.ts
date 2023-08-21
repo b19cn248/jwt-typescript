@@ -6,11 +6,12 @@ import {
     Path,
     Post,
     Put, Query,
-    Route,
+    Route, Tags,
 } from "tsoa";
 import { UsersService, UserCreationParams, UserLoginParams } from "./user.service";
 
 @Route("users")
+@Tags("users")
 export class UsersController extends Controller {
     private usersService: UsersService = new UsersService();
 

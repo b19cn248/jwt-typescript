@@ -59,6 +59,48 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/books": {
+			"post": {
+				"operationId": "CreateBook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"books"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"author": {
+										"type": "string"
+									},
+									"title": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"author",
+									"title"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/users/{userId}": {
 			"get": {
 				"operationId": "GetUser",
@@ -72,6 +114,9 @@
 						}
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -96,6 +141,9 @@
 						}
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -125,6 +173,9 @@
 						"description": "No content"
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -151,6 +202,9 @@
 						}
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -178,6 +232,9 @@
 						}
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -205,6 +262,9 @@
 						}
 					}
 				},
+				"tags": [
+					"users"
+				],
 				"security": [],
 				"parameters": [
 					{
