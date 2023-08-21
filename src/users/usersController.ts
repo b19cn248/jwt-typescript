@@ -5,7 +5,7 @@ import {
     Get,
     Path,
     Post,
-    Put,
+    Put, Query,
     Route,
 } from "tsoa";
 import { UsersService, UserCreationParams, UserLoginParams } from "./user.service";
@@ -52,5 +52,12 @@ export class UsersController extends Controller {
     @Delete("{userId}")
     public async deleteUser(@Path() userId: string): Promise<void> {
         await this.usersService.delete(userId);
+    }
+
+    @Get("users/filter")
+    public async filter(@Query() name: string): Promise<any> {
+        console.log("dbrr")
+        const filteredUsers = await this.usersService.filterUsers(name);
+        return filteredUsers;
     }
 }

@@ -191,6 +191,32 @@
 					}
 				}
 			}
+		},
+		"/users/users/filter": {
+			"get": {
+				"operationId": "Filter",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
 		}
 	},
 	"servers": [

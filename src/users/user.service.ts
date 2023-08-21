@@ -94,4 +94,14 @@ export class UsersService {
         const user = await UserModel.findById(userId);
         return user;
     }
+
+    public async filterUsers(name: string): Promise<any> {
+        const filteredUsers = await UserModel.find({
+            username: { $regex: new RegExp(name, 'i') }
+        });
+        console.log(filteredUsers);
+        return filteredUsers;
+    }
+
+
 }
