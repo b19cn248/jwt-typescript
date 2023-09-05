@@ -6,6 +6,22 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"BookRequest": {
+				"properties": {
+					"author": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"author",
+					"title"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"UserCreationParams": {
 				"properties": {
 					"username": {
@@ -50,7 +66,7 @@
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "tsoa-project",
+		"title": "Base NodeJS Project from HieuPTIT",
 		"version": "1.0.0",
 		"license": {
 			"name": "MIT"
@@ -61,10 +77,10 @@
 	"paths": {
 		"/books": {
 			"post": {
-				"operationId": "CreateBook",
+				"operationId": "Create",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "A Promise that resolves to the newly created book's JSON representation if successful.",
 						"content": {
 							"application/json": {
 								"schema": {}
@@ -72,33 +88,128 @@
 						}
 					}
 				},
+				"description": "Handles HTTP POST requests to create a new book.",
 				"tags": [
 					"books"
 				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
+					"description": "- The request body containing book data.",
 					"required": true,
 					"content": {
 						"application/json": {
 							"schema": {
-								"properties": {
-									"author": {
-										"type": "string"
-									},
-									"title": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"author",
-									"title"
-								],
-								"type": "object"
+								"$ref": "#/components/schemas/BookRequest",
+								"description": "- The request body containing book data."
 							}
 						}
 					}
 				}
+			}
+		},
+		"/books/{id}": {
+			"get": {
+				"operationId": "Get",
+				"responses": {
+					"200": {
+						"description": "A Promise that resolves to the book if found, or null if not found.",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Retrieves a book by its ID.",
+				"tags": [
+					"books"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "- The ID of the book to retrieve.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "A Promise that resolves to the updated book's JSON representation if successful,\nor an error if not found or other errors occur.",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Handles HTTP PUT requests to update a book by its ID.",
+				"tags": [
+					"books"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "- The ID of the book to update.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "- The request body containing book data to update.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BookRequest",
+								"description": "- The request body containing book data to update."
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "A Promise containing the result of the book deletion.",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Delete a book based on its ID.",
+				"tags": [
+					"books"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "- The ID of the book to be deleted.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
 			}
 		},
 		"/users/{userId}": {

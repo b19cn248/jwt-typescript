@@ -8,7 +8,8 @@ import {
     Put, Query,
     Route, Tags,
 } from "tsoa";
-import { UsersService, UserCreationParams, UserLoginParams } from "./user.service";
+import { UsersService } from "./user.service";
+import {UserCreationParams, UserLoginParams} from "./user.dto";
 
 @Route("users")
 @Tags("users")

@@ -1,18 +1,7 @@
 import UserModel from "./user.model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-export interface UserCreationParams {
-    username: string;
-    email: string;
-    role: String;
-    password: string;
-}
-
-export interface UserLoginParams {
-    username: string;
-    password: string;
-}
+import {UserCreationParams, UserLoginParams} from "./user.dto";
 
 export class UsersService {
 
@@ -71,12 +60,6 @@ export class UsersService {
         };
 
     }
-
-    // public async create(userParams: UserCreationParams): Promise<any> {
-    //     // Logic to create a new user and return the created user
-    //     const newUser = new UserModel(userParams);
-    //     return await newUser.save();
-    // }
 
     public async update(userId: string, userParams: UserCreationParams): Promise<any> {
         // Logic to update a user by userId and return the updated user

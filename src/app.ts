@@ -12,7 +12,6 @@ mongoose.connect(MONGODB_URI)
 const db = mongoose.connection;
 
 console.log('hello from typescript nodeJS')
-console.log('hello from git hahaha')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
@@ -26,8 +25,6 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
         swaggerUi.generateHTML(await import("../swagger.json"))
     );
 });
-
-
 
 // Use body parser to read sent json payloads
 app.use(

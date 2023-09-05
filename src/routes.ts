@@ -11,6 +11,15 @@ import type { RequestHandler, Router } from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "BookRequest": {
+        "dataType": "refObject",
+        "properties": {
+            "author": {"dataType":"string","required":true},
+            "title": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UserCreationParams": {
         "dataType": "refObject",
         "properties": {
@@ -43,11 +52,11 @@ export function RegisterRoutes(app: Router) {
     // ###########################################################################################################
         app.post('/books',
             ...(fetchMiddlewares<RequestHandler>(BookController)),
-            ...(fetchMiddlewares<RequestHandler>(BookController.prototype.createBook)),
+            ...(fetchMiddlewares<RequestHandler>(BookController.prototype.create)),
 
-            function BookController_createBook(request: any, response: any, next: any) {
+            function BookController_create(request: any, response: any, next: any) {
             const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"author":{"dataType":"string","required":true},"title":{"dataType":"string","required":true}}},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"BookRequest"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -59,7 +68,83 @@ export function RegisterRoutes(app: Router) {
                 const controller = new BookController();
 
 
-              const promise = controller.createBook.apply(controller, validatedArgs as any);
+              const promise = controller.create.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/books/:id',
+            ...(fetchMiddlewares<RequestHandler>(BookController)),
+            ...(fetchMiddlewares<RequestHandler>(BookController.prototype.get)),
+
+            function BookController_get(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new BookController();
+
+
+              const promise = controller.get.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/books/:id',
+            ...(fetchMiddlewares<RequestHandler>(BookController)),
+            ...(fetchMiddlewares<RequestHandler>(BookController.prototype.update)),
+
+            function BookController_update(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"double"},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"BookRequest"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new BookController();
+
+
+              const promise = controller.update.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/books/:id',
+            ...(fetchMiddlewares<RequestHandler>(BookController)),
+            ...(fetchMiddlewares<RequestHandler>(BookController.prototype.delete)),
+
+            function BookController_delete(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new BookController();
+
+
+              const promise = controller.delete.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
