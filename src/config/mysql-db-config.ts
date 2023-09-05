@@ -1,7 +1,8 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('test_db', 'root', '123456', {
+const sequelize = new Sequelize('database', 'hieu', '1234', {
     host: 'localhost',
+    port: 33061,
     dialect: 'mysql'
 });
 

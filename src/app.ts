@@ -2,21 +2,21 @@
 import express, {json, urlencoded, Response as ExResponse, Request as ExRequest} from "express";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "./routes";
-import mongoose from 'mongoose';
-
-const MONGODB_URI = 'mongodb://127.0.0.1/testTS';
-
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('Connected to mongo successfully!'));
-
-const db = mongoose.connection;
-
-console.log('hello from typescript nodeJS')
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-    console.log('Connected to MongoDB');
-});
+// import mongoose from 'mongoose';
+//
+// const MONGODB_URI = 'mongodb://127.0.0.1/testTS';
+//
+// mongoose.connect(MONGODB_URI)
+//     .then(() => console.log('Connected to mongo successfully!'));
+//
+// const db = mongoose.connection;
+//
+// console.log('hello from typescript nodeJS')
+//
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open', () => {
+//     console.log('Connected to MongoDB');
+// });
 
 export const app = express();
 
